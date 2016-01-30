@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Bootstrap Sample</title>
+<!-- BootstrapのCSS読み込み -->
+<%= stylesheet_link_tag "/css/bootstrap.min.css" %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<%= stylesheet_link_tag "/css/jquery.bxslider.css" %>
+<%= stylesheet_link_tag "/css/additional_slide.css" %>
+<%= stylesheet_link_tag "/css/bootstrap-datepicker.min.css" %>
+<%= stylesheet_link_tag "/css/application.css" %>
+<%= stylesheet_link_tag "/css/parts.css" %>
+<%= stylesheet_link_tag "/css/local.css" %>
+<%= stylesheet_link_tag "/css/style.css" %>
+<%= stylesheet_link_tag "/css/map.css" %>
+<!-- jQuery読み込み -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<%= javascript_include_tag "/js/bootstrap.min.js" %>
+<%= javascript_include_tag "/js/bootstrap-datepicker.min.js" %>
+<script type="text/javascript">
+$(function() {
+	$('.datepicker').datepicker({
+		language: 'ja',
+		format: "yyyy/mm/dd",
+		autoclose: true
+	});
+});
+</script>
+<script type="text/javascript">
+$(function() {
+	$('#sandbox-container .input-daterange').datepicker({
+		autoclose: true
+	});
+});
+</script>
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAZYmsgBO4ntK1_s-rrjoTTBXsAOWle8XQ&sensor=true"></script>
+<script type="text/javascript">
+	function initialize() {
+		var latlng = new google.maps.LatLng(35.170039, 136.908716);
+		var opts = {
+			zoom: 13,
+			center: latlng,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		var map = new google.maps.Map(document.getElementById("map_canvas"), opts);
+		var geocoder = new google.maps.Geocoder();
+		var bounds = new google.maps.LatLngBounds();
+		
+		<% if @events.present? %>
+		
+		var addresses = [
+			<% @events.each do |event| %>
+				'<%= event.address %>',
+			<% end %>
+		];
+		
+		addresses.map(function(address, i){
+			geocoder.geocode({'address' : address}, function(results, status){
+				// マーカーの表示
+				var icon = "https://gmaps-samples.googlecode.com/svn/trunk/markers/green/marker" + (i+1) + ".png";
+				var position = results[0].geometry.location;
+				var marker = new google.maps.Marker({
+					icon: icon,
+					position: position,
+					map: map
+				});
+	 
+				// 情報ウィンドウの表示
+				var content = results[0].formatted_address;
+				var infoWindow = new google.maps.InfoWindow({
+					content: content,
+					position: position,
+					size: new google.maps.Size(50,50)
+				});
+		 
+				// マーカーにマウスを乗せた時に情報ウィンドウを表示
+				google.maps.event.addListener(marker, 'mouseover', function(){
+					infoWindow.open(map, marker);
+				});
+		 
+				// マーカーからマウスが離れた時に情報ウィンドウを非表示
+				google.maps.event.addListener(marker, 'mouseout', function(){
+					infoWindow.close(map, marker);
+				});
+		 
+				// マーカーが地図の中にいい感じに収まるようにする
+				bounds.extend(position);
+				map.fitBounds(bounds);
+		 
+				// 住所が1つの場合、寄り過ぎるので zoom を調整
+				if(addresses.length === 1) map.setZoom(18);
+			});
+		});
+		
+		<% end %>
+	}
+</script>
+
+
+
+
+</head>
+<body role="document" onload="initialize()">
+<!-- <header style="background-color:gray">Header</header> -->
+
+<div id="wrapper">
+	<nav class="navbar navbar-default">
+		<div class="container"><!-- 無くても良い -->
+			<div class="navbar-header">
+				<!-- logo img -->
+				<a class="navbar-brand" href="">
+					<img src="/images/logo.png" id="logo-img">
+				</a>
+	
+				<!-- toggle -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#top-nav">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+	
+			</div>
+	
+			<!-- top menu -->
+			<div class="collapse navbar-collapse" id="top-nav">
+	
+				<!-- main navbar -->
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="">サービス</a>
+					</li>
+					<li>
+						<a href="">サポート</a>
+					</li>
+					<li>
+						<a href="">事例紹介</a>
+					</li>
+					<li>
+						<a href="">会社概要</a>
+					</li>
+					<li>
+						<a href="inquiry.html">お問い合わせ</a>
+					</li>
+				</ul>
+	
+				<!-- right navbar -->
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href=""><i class="fa fa-sign-in"></i> ログイン</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- end container -->
+	</nav>
+	<!-- end nav -->
+	
+	<!-- sidebar -->
+	<div class="sidebar">
+		<div class="container-fluid top-margin12">
+			<%= form_tag :search_events, method: :get do %>
+			<div class="row-fluid search-box">
+		 		<div class="tr">
+					<div class="col-xs-12 col-sm-12 col-md-3">
+						<label>キーワード</label>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-9">
+						<%= text_field_tag "q", params[:q], placeholder:"地域名や気になる単語を入力", style:"width:100%" %>
+					</div>
+				</div>
+				<div class="tr">
+					<div class="col-xs-12 col-sm-12 col-md-3">
+						<label>期間</label>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-9">
+						<input type="text" placeholder="開始"><input type="text" placeholder="終了">
+					</div>
+				</div>
+				<div class="tr">
+					<div class="col-xs-12 col-sm-12 col-md-3">
+						<label>シーン</label>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-9">
+						<ul class="list-inline">
+							<li><input type="checkbox" name="scene">友達と</li>
+							<li><input type="checkbox" name="scene">恋人と</li>
+							<li><input type="checkbox" name="scene">家族で</li>
+							<li><input type="checkbox" name="scene">一人で</li>
+						</ul>
+					</div>
+				</div>
+				<div class="tr">
+					<div class="col-xs-12 col-sm-12 col-md-3">
+						<label>ジャンル</label>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-9">
+						<ul class="list-inline">
+							<li><input type="checkbox" name="genre">ミュージアム</li>
+							<li><input type="checkbox" name="genre">公園
+							<li><input type="checkbox" name="genre">ライブ・コンサート</li>
+						</ul>
+					</div>
+				</div>
+				<div class="tr">
+					<div class="col-xs-12 col-sm-12 col-md-3">
+						<label>設備</label>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-9">
+						<ul class="list-inline">
+							<li><input type="checkbox" name="parking">駐車場</li>
+							<li><input type="checkbox" name="parking">駐輪場</li>
+							<li><input type="checkbox" name="parking">トイレ</li>
+							<li><input type="checkbox" name="parking">授乳室</li>
+						</ul>
+					</div>
+				</div>
+				<div class="tr">
+					<div class="col-xs-12 col-sm-12">
+						<%= submit_tag "絞りこみ検索", style:"width:100%" %>
+					</div>
+				</div>
+			</div>
+			<% end %>
+		</div>
+		
+		<% if @events.present? %>
+		
+		<div class="row search-result">
+			<% @events.each do |event| %>
+			<div class="col-xs-12 col-sm-6 event-small">
+				<a href="" target="_blank">
+				<div class="event-img" style="background-image: url('/<%= event.image1 %>')"></div>
+				<div class="caption-area">
+					<div class="caption-background">
+						<h3><%= link_to event.title, event %></h3>
+						<p><%= event.date %></p>
+						<p><%= event.address %></p>
+						<p>出典: <%= event.url %></p>
+					</div>
+				</div>
+				</a>
+			</div>
+			<% end %>
+		</div>
+		<% else %>
+		<p>イベント情報がありません</p>
+		<% end %>
+	</div>
+	
+
+	
+	<!-- sidebar end -->
+	
+	<div class="hidden-xs map">
+		<div id="map_canvas" style="height:100% width:50%" class="map-fullscreen"></div>
+	</div>
+</div>
+
+</body>
+</html>

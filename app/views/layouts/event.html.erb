@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title><%= page_title %></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id="wrapper">
+	<nav class="navbar navbar-default">
+		<div class="container"><!-- 無くても良い -->
+			<div class="navbar-header">
+				<!-- logo img -->
+				<a class="navbar-brand" href="">
+					<img src="images/logo.png" id="logo-img">
+				</a>
+	
+				<!-- toggle -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#top-nav">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+	
+			</div>
+	
+			<!-- top menu -->
+			<div class="collapse navbar-collapse" id="top-nav">
+	
+				<!-- main navbar -->
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="">サービス</a>
+					</li>
+					<li>
+						<a href="">サポート</a>
+					</li>
+					<li>
+						<a href="">事例紹介</a>
+					</li>
+					<li>
+						<a href="">会社概要</a>
+					</li>
+					<li>
+						<a href="inquiry.html">お問い合わせ</a>
+					</li>
+				</ul>
+	
+				<!-- right navbar -->
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href=""><i class="fa fa-sign-in"></i> ログイン</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- end container -->
+	</nav>
+	<!-- end nav -->
+	
+	<!-- sidebar -->
+	<div class="sidebar">
+		<ul class="search-box">
+			<form style="margin-left: 10px">
+				<li>
+					<label>ご利用地域</label>
+					<input type="text" placeholder="ここに地域が入る">
+				</li>
+				<li>
+					<label>期間</label>
+					<input type="text" placeholder="開始"><input type="text" placeholder="終了">
+				</li>
+				<li>
+					<label>シーン</label>
+					<input type="checkbox" name="scene">友人と
+					<input type="checkbox" name="scene">恋人と
+					<input type="checkbox" name="scene">家族と
+					<input type="checkbox" name="scene">一人で
+				</li>
+				<li>
+					<label>ジャンル</label>
+					<input type="checkbox" name="genre">ミュージアム
+					<input type="checkbox" name="genre">公園
+					<input type="checkbox" name="genre">ライブ・コンサート
+				</li>
+				<li>
+					<label>予算</label>
+					<input type="text" placeholder="開始"><input type="text" placeholder="終了">
+				</li>
+				<li>
+					<label>駐車場</label>
+					<input type="radio" name="parking">有
+					<input type="radio" name="parking">無
+				</li>
+				<input type="submit" value="検索">
+			</form>
+		</ul>
+		<div class="row search-box" style="margin-left: 0px">
+			<div class="col-xs-12 col-sm-6 event-small">
+				<a href="" target="_blank">
+				<div class="event-img" style="background-image: url('images/39114.jpg')"></div>
+				<div class="caption-area">
+					<div class="caption-background">
+						<h3>下崎山のヘトマト行事</h3>
+						<p>2016年1月17日</p>
+						<p> 長崎県 / 白浜神社（下崎山町）一帯</p>
+						<p>出典: http://www.rurubu.com/event/detail.aspx?ID=11103</p>
+					</div>
+				</div>
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 event-small">
+				<a href="" target="_blank">
+				<div class="event-img" style="background-image: url('images/39114.jpg')"></div>
+				<div class="caption-area">
+					<div class="caption-background">
+						<h3>下崎山のヘトマト行事</h3>
+						<p>2016年1月17日</p>
+						<p> 長崎県 / 白浜神社（下崎山町）一帯</p>
+						<p>出典: http://www.rurubu.com/event/detail.aspx?ID=11103</p>
+					</div>
+				</div>
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 event-small">
+				<a href="" target="_blank">
+				<div class="event-img" style="background-image: url('images/39114.jpg')"></div>
+				<div class="caption-area">
+					<div class="caption-background">
+						<h3>下崎山のヘトマト行事</h3>
+						<p>2016年1月17日</p>
+						<p> 長崎県 / 白浜神社（下崎山町）一帯</p>
+						<p>出典: http://www.rurubu.com/event/detail.aspx?ID=11103</p>
+					</div>
+				</div>
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 event-small">
+				<a href="" target="_blank">
+				<div class="event-img" style="background-image: url('images/39114.jpg')"></div>
+				<div class="caption-area">
+					<div class="caption-background">
+						<h3>下崎山のヘトマト行事</h3>
+						<p>2016年1月17日</p>
+						<p> 長崎県 / 白浜神社（下崎山町）一帯</p>
+						<p>出典: http://www.rurubu.com/event/detail.aspx?ID=11103</p>
+					</div>
+				</div>
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 event-small">
+				<a href="" target="_blank">
+				<div class="event-img" style="background-image: url('images/39114.jpg')"></div>
+				<div class="caption-area">
+					<div class="caption-background">
+						<h3>下崎山のヘトマト行事</h3>
+						<p>2016年1月17日</p>
+						<p> 長崎県 / 白浜神社（下崎山町）一帯</p>
+						<p>出典: http://www.rurubu.com/event/detail.aspx?ID=11103</p>
+					</div>
+				</div>
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 event-small">
+				<a href="" target="_blank">
+				<div class="event-img" style="background-image: url('images/39114.jpg')"></div>
+				<div class="caption-area">
+					<div class="caption-background">
+						<h3>下崎山のヘトマト行事</h3>
+						<p>2016年1月17日</p>
+						<p> 長崎県 / 白浜神社（下崎山町）一帯</p>
+						<p>出典: http://www.rurubu.com/event/detail.aspx?ID=11103</p>
+					</div>
+				</div>
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 event-small">
+				<a href="" target="_blank">
+				<div class="event-img" style="background-image: url('images/39114.jpg')"></div>
+				<div class="caption-area">
+					<div class="caption-background">
+						<h3>下崎山のヘトマト行事</h3>
+						<p>2016年1月17日</p>
+						<p> 長崎県 / 白浜神社（下崎山町）一帯</p>
+						<p>出典: http://www.rurubu.com/event/detail.aspx?ID=11103</p>
+					</div>
+				</div>
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-6 event-small">
+				<a href="" target="_blank">
+				<div class="event-img" style="background-image: url('images/39114.jpg')"></div>
+				<div class="caption-area">
+					<div class="caption-background">
+						<h3>下崎山のヘトマト行事</h3>
+						<p>2016年1月17日</p>
+						<p> 長崎県 / 白浜神社（下崎山町）一帯</p>
+						<p>出典: http://www.rurubu.com/event/detail.aspx?ID=11103</p>
+					</div>
+				</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<!-- sidebar end -->
+	
+	<div class="hidden-xs map">
+		<div id="map_canvas" style="height:100% width:50%" class="map-fullscreen"></div>
+	</div>
+</div>
+
+</body>
+</html>

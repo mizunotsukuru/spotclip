@@ -1,0 +1,19 @@
+<%= @page_title = "会員名簿" %>
+<h1><%= @page_title %></h1>
+
+<% if @events.present? %>
+<table class="list">
+	<tr>
+		<th>イベント番号</th>
+		<th>イベント名</th>
+	</tr>
+	<% @events.each do |event| %>
+	<tr>
+		<td style="text-align: right"><%= event.number %></td>
+		<td><%= event.name %></td>
+	</tr>
+	<% end %>
+</table>
+<% else %>
+<p>イベント情報がありません</p>
+<% end %>

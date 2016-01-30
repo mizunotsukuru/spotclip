@@ -1,0 +1,54 @@
+.sidebar{
+	width:100%
+	
+}
+
+.sidebar {
+	background: #f7f7f7;
+}
+
+@media screen and (min-width: 768px){
+	.sidebar {
+		position: fixed;
+		top: 47px;
+		left: 0;
+		bottom: 0;
+		width: 60%;
+		overflow-y: scroll;
+		-webkit-overflow-scrolling: touch;
+		box-sizing: border-box;
+	}
+}
+
+.map {
+    top: 47px;
+    display: block;
+	position: fixed;
+    right: 0;
+    left: auto;
+    bottom: 0;
+    width: 40%;
+    box-sizing: border-box;
+}
+
+.search-box {
+	display: table;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.search-box div.tr {
+	display: table-row;
+	border-bottom: 10px #f7f7f7 solid;
+}
+
+.search-box div div {
+	display: table-cell;
+}
+
+.search-result {
+	display: block;
+	margin-left: 0px;
+    margin-right: 0px;
+	background: #FFF;
+}

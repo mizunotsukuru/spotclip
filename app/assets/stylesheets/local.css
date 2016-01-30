@@ -1,0 +1,30 @@
+.content {
+  padding-top: 0;
+}
+
+.content .cover {
+  height: 300px;
+}
+
+.content .cover .left-content {
+  margin-top: 50px;
+}
+
+.area-list ul {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 16px;
+}
+
+.area-list ul li {
+  display: inline;
+  list-style-type: none;
+}
+
+.area-list ul li:before {
+  content: ' | '
+}
+
+.area-list ul li:first-child:before {
+  content: ''
+}

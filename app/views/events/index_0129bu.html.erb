@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Bootstrap Sample</title>
+<!-- BootstrapのCSS読み込み -->
+<%= stylesheet_link_tag "/css/bootstrap.min.css" %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<%= stylesheet_link_tag "/css/jquery.bxslider.css" %>
+<%= stylesheet_link_tag "/css/additional_slide.css" %>
+<%= stylesheet_link_tag "/css/bootstrap-datepicker.min.css" %>
+<%= stylesheet_link_tag "/css/application.css" %>
+<%= stylesheet_link_tag "/css/parts.css" %>
+<%= stylesheet_link_tag "/css/local.css" %>
+<%= stylesheet_link_tag "/css/style.css" %>
+<%= stylesheet_link_tag "/css/map.css" %>
+<!-- jQuery読み込み -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<%= javascript_include_tag "/js/bootstrap.min.js" %>
+<%= javascript_include_tag "/js/bootstrap-datepicker.min.js" %>
+<script type="text/javascript">
+$(function() {
+	$('.datepicker').datepicker({
+		language: 'ja',
+		format: "yyyy/mm/dd",
+		autoclose: true
+	});
+});
+</script>
+<script type="text/javascript">
+$(function() {
+	$('#sandbox-container .input-daterange').datepicker({
+		autoclose: true
+	});
+});
+</script>
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAZYmsgBO4ntK1_s-rrjoTTBXsAOWle8XQ&sensor=true"></script>
+<script type="text/javascript">
+	function initialize() {
+	  var latlng = new google.maps.LatLng(35.709984,139.810703);
+	  var opts = {
+		zoom: 15,
+		center: latlng,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	  };
+	  var map = new google.maps.Map(document.getElementById("map_canvas"), opts);
+	}
+</script>
+
+
+</head>
+<body role="document" onload="initialize()">
+<!-- <header style="background-color:gray">Header</header> -->
+
+<div id="wrapper">
+	<nav class="navbar navbar-default">
+		<div class="container"><!-- 無くても良い -->
+			<div class="navbar-header">
+				<!-- logo img -->
+				<a class="navbar-brand" href="">
+					<img src="/images/logo.png" id="logo-img">
+				</a>
+	
+				<!-- toggle -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#top-nav">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+	
+			</div>
+	
+			<!-- top menu -->
+			<div class="collapse navbar-collapse" id="top-nav">
+	
+				<!-- main navbar -->
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="">サービス</a>
+					</li>
+					<li>
+						<a href="">サポート</a>
+					</li>
+					<li>
+						<a href="">事例紹介</a>
+					</li>
+					<li>
+						<a href="">会社概要</a>
+					</li>
+					<li>
+						<a href="inquiry.html">お問い合わせ</a>
+					</li>
+				</ul>
+	
+				<!-- right navbar -->
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href=""><i class="fa fa-sign-in"></i> ログイン</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- end container -->
+	</nav>
+	<!-- end nav -->
+	
+	<!-- sidebar -->
+	<div class="sidebar">
+		<ul class="search-box">
+			<%= form_tag :search_events, method: :get do %>
+				<li>
+					<label>ご利用地域</label>
+					<%= text_field_tag "q", params[:q] %>
+					<!-- <input type="text" placeholder="ここに地域が入る"> -->
+				</li>
+				<li>
+					<label>期間</label>
+					<input type="text" placeholder="開始"><input type="text" placeholder="終了">
+				</li>
+				<li>
+					<label>シーン</label>
+					<input type="checkbox" name="scene">友人と
+					<input type="checkbox" name="scene">恋人と
+					<input type="checkbox" name="scene">家族と
+					<input type="checkbox" name="scene">一人で
+				</li>
+				<li>
+					<label>ジャンル</label>
+					<input type="checkbox" name="genre">ミュージアム
+					<input type="checkbox" name="genre">公園
+					<input type="checkbox" name="genre">ライブ・コンサート
+				</li>
+				<li>
+					<label>予算</label>
+					<input type="text" placeholder="開始"><input type="text" placeholder="終了">
+				</li>
+				<li>
+					<label>駐車場</label>
+					<input type="radio" name="parking">有
+					<input type="radio" name="parking">無
+				</li>
+				<%= submit_tag "検索" %>
+			<% end %>
+		</ul>
+		
+		<% if @events.present? %>
+		
+		<div class="row search-box" style="margin-left: 0px">
+			<% @events.each do |event| %>
+			<div class="col-xs-12 col-sm-6 event-small">
+				<a href="" target="_blank">
+				<div class="event-img" style="background-image: url('/<%= event.image1 %>')"></div>
+				<div class="caption-area">
+					<div class="caption-background">
+						<h3><%= link_to event.title, event %></h3>
+						<p><%= event.date %></p>
+						<p><%= event.address %></p>
+						<p>出典: <%= event.url %></p>
+					</div>
+				</div>
+				</a>
+			</div>
+			<% end %>
+		</div>
+		<% else %>
+		<p>イベント情報がありません</p>
+		<% end %>
+	</div>
+	
+
+	
+	<!-- sidebar end -->
+	
+	<div class="hidden-xs map">
+		<div id="map_canvas" style="height:100% width:50%" class="map-fullscreen"></div>
+	</div>
+</div>
+
+</body>
+</html>

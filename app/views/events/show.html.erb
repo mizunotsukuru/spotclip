@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Bootstrap Sample</title>
+<!-- BootstrapのCSS読み込み -->
+<%= stylesheet_link_tag "/css/bootstrap.min.css" %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<%= stylesheet_link_tag "/css/jquery.bxslider.css" %>
+<%= stylesheet_link_tag "/css/additional_slide.css" %>
+<%= stylesheet_link_tag "/css/bootstrap-datepicker.min.css" %>
+<%= stylesheet_link_tag "/css/application.css" %>
+<%= stylesheet_link_tag "/css/parts.css" %>
+<%= stylesheet_link_tag "/css/local.css" %>
+<%= stylesheet_link_tag "/css/style.css" %>
+<%= stylesheet_link_tag "/css/map.css" %>
+<%= stylesheet_link_tag "/css/share-button.css" %>
+<%= stylesheet_link_tag "/css/event.css" %>
+<!-- jQuery読み込み -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<%= javascript_include_tag "/js/bootstrap.min.js" %>
+<%= javascript_include_tag "/js/bootstrap-datepicker.min.js" %>
+<%= javascript_include_tag "/js/share-button.js" %>
+
+<script type="text/javascript">
+$(function() {
+	$('.datepicker').datepicker({
+		language: 'ja',
+		format: "yyyy/mm/dd",
+		autoclose: true
+	});
+});
+</script>
+<script type="text/javascript">
+$(function() {
+	$('#sandbox-container .input-daterange').datepicker({
+		autoclose: true
+	});
+});
+</script>
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAZYmsgBO4ntK1_s-rrjoTTBXsAOWle8XQ&sensor=true"></script>
+<script type="text/javascript">
+	function initialize() {
+	  var latlng = new google.maps.LatLng(35.709984,139.810703);
+	  var opts = {
+		zoom: 15,
+		center: latlng,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	  };
+	  var map = new google.maps.Map(document.getElementById("map_canvas"), opts);
+	}
+</script>
+
+
+</head>
+<body role="document">
+<!-- <header style="background-color:gray">Header</header> -->
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.5&appId=939503716105415";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+<div id="wrapper">
+	<header>
+			<!-- nav -->
+		<nav class="navbar navbar-default">
+			<div class="container-fluid"><!-- 無くても良い -->
+				<div class="navbar-header">
+					<!-- logo img -->
+					<a class="navbar-brand" href="">
+						<img src="images/logo.png" id="logo-img">
+					</a>
+		
+					<!-- toggle -->
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#top-nav">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+		
+				</div>
+		
+				<!-- top menu -->
+				<div class="collapse navbar-collapse" id="top-nav">
+		
+					<!-- main navbar -->
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="">サービス</a>
+						</li>
+						<li>
+							<a href="">サポート</a>
+						</li>
+						<li>
+							<a href="">事例紹介</a>
+						</li>
+						<li>
+							<a href="">会社概要</a>
+						</li>
+						<li>
+							<a href="inquiry.html">お問い合わせ</a>
+						</li>
+					</ul>
+		
+					<!-- right navbar -->
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href=""><i class="fa fa-sign-in"></i> ログイン</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- end container -->
+		</nav>
+		<!-- end nav -->
+	</header>
+	<div class="content">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<!-- 左バッファ -->
+				<div class="hidden-xs hidden-sm col-md-1"></div>
+				<!-- 左バッファ end-->
+				<!-- 左サイドカラム -->
+				<div class="col-xs-12 col-sm-8 col-md-6">
+					<img src="/<%= @event.image1 %>" class="img-responsive" alt="イベント画像" />
+					<div class="row-fluid">
+						<div class="col-xs-12">
+							<h1><%= @event.title %></h1>
+							<% if @tags.present? %>
+								<% @tags.each do |tag| %>
+									<button type="button" class="btn btn-default btn-xs btn-primary tag-bottom5"><%= tag %></button>
+								<% end %>
+							<% end %>
+							<p><%= raw @event.note %></p>
+							<h1>Information</h1>
+							<iframe width="100%" height="250" frameborder="0" marginwidth="0" marginheight="0" src="http://maps.google.co.jp/maps?q=<%= @event.address %>&output=embed&t=m"></iframe>
+							<table class="table">
+								<tbody>
+								<tr>
+									<td>場所</td>
+									<td><%= @event.address %></td>
+								</tr>
+								<tr>
+									<td>期間</td>
+									<td><%= @event.date %></td>
+								</tr>
+								<tr>
+									<td>時間</td>
+									<td><%= @event.time %></td>
+								</tr>
+								<tr>
+									<td>お問い合わせ</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>Web</td>
+									<td><a href="<%= @event.url %>"><%= @event.url %></a></td>
+								</tr>
+								<tr>
+									<td>電話</td>
+									<td><%= @event.phone %></td>
+								</tr>
+								<tr>
+									<td>Mail</td>
+									<td><%= @event.mail %></td>
+								</tr>
+								</tbody>
+							</table>
+							<ul class="share-buttons">
+							  <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F&t=" title="Share on Facebook" target="_blank"><img src="/images/flat_web_icon_set/color/Facebook.png"></a></li>
+							  <li><a href="https://twitter.com/intent/tweet?source=http%3A%2F%2F&text=:%20http%3A%2F%2F" target="_blank" title="Tweet"><img src="/images/flat_web_icon_set/color/Twitter.png"></a></li>
+							  <li><a href="https://plus.google.com/share?url=http%3A%2F%2F" target="_blank" title="Share on Google+"><img src="/images/flat_web_icon_set/color/Google+.png"></a></li>
+							  <li><a href="http://www.tumblr.com/share?v=3&u=http%3A%2F%2F&t=&s=" target="_blank" title="Post to Tumblr"><img src="/images/flat_web_icon_set/color/Tumblr.png"></a></li>
+							  <li><a href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2F&description=" target="_blank" title="Pin it"><img src="/images/flat_web_icon_set/color/Pinterest.png"></a></li>
+							</ul>
+							<div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5"></div>
+						</div>
+					</div>
+				</div>
+				<!-- 左サイドカラム end -->
+				<!-- 中間バッファ -->
+				<div class="hidden-xs hidden-sm col-md-1"></div>
+				<!-- 中間バッファ end -->
+				<!-- 右サイドカラム -->
+				<div class="col-xs-12 col-sm-4 col-md-3">
+					<div id="ranking">
+						<h2>Ranking</h2>
+						<% 3.times do |i|
+							ranking = @rankings[i]
+						 %>
+							<div class="col-xs-12 event-info">
+								<a href="" target="_blank">
+								<div class="event-img" style="background-image: url('/<%= ranking.image1 %>')"></div>
+								<div class="caption-area">
+									<div class="caption-background">
+										<h3><%= link_to ranking.title, ranking %></h3>
+										<p><%= ranking.date %></p>
+										<p><%= ranking.address %></p>
+										<p>出典: <%= ranking.url %></p>
+									</div>
+								</div>
+								</a>
+							</div>
+						<% end %>
+					</div>
+					
+					<div id="recent">
+						<h2>Recent</h2>
+						<% 3.times do |i|
+							recent = @recents[i]
+						 %>
+							<div class="col-xs-12 event-info">
+								<a href="" target="_blank">
+								<div class="event-img" style="background-image: url('/<%= recent.image1 %>')"></div>
+								<div class="caption-area">
+									<div class="caption-background">
+										<h3><%= link_to recent.title, recent %></h3>
+										<p><%= recent.date %></p>
+										<p><%= recent.address %></p>
+										<p>出典: <%= recent.url %></p>
+									</div>
+								</div>
+								</a>
+							</div>
+						<% end %>
+					</div>
+					
+					<div id="related">
+						<% 2.times do |i|
+							related = @relateds[i]
+						 %>
+							<div class="col-xs-12 event-info">
+								<a href="" target="_blank">
+								<div class="event-img" style="background-image: url('/<%= related.image1 %>')"></div>
+								<div class="caption-area">
+									<div class="caption-background">
+										<h3><%= link_to related.title, related %></h3>
+										<p><%= related.date %></p>
+										<p><%= related.address %></p>
+										<p>出典: <%= related.url %></p>
+									</div>
+								</div>
+								</a>
+							</div>
+						<% end %>
+					</div>
+				</div>
+				<!-- 右サイドカラム end -->
+				<!-- 右バッファ -->
+				<div class="hidden-xs hidden-sm col-md-1"
+				
+			</div>
+		</div>
+	</div>
+	
+	<footer style="background-color:gray">
+	<div class="container text-center">
+		<div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+			<ul class="list-inline">
+				<li><a href="/terms">Spotclipとは</a></li>
+				<li><a href="/prmanager/terms" target="_blank">利用者向け</a></li>
+				<li><a href="/trademark">掲載者向け</a></li>
+				<li><a href="http://10xlab.jp/privacy" target="_blank">ブログ</a></li>
+				<li><a href="http://10xlab.jp/" target="_blank">利用規約とプライバシー</a></li>
+			</ul>
+		</div>
+	<div class="text-center">
+		<ul class="list-inline">
+			<li><a href="/terms">利用規約(アプリ)</a></li>
+			<li><a href="/prmanager/terms" target="_blank">利用規約(PRマネージャー)</a></li>
+			<li><a href="/trademark">商標について</a></li>
+			<li><a href="http://10xlab.jp/privacy" target="_blank">個人情報の取扱いについて</a></li>
+			<li><a href="http://10xlab.jp/" target="_blank">運営会社</a></li>
+		</ul>
+	</div>
+	<p class="text-center">
+	copyright 2015 <a href="http://10xlab.jp/" target="_blank">10xlab</a>. All Rights Reserved.
+	</p>
+	</footer>
+	
+</div>
+
+<!-- 消えてもらう！
+-->
+</body>
+</html>

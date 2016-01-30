@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bootstrap Sample</title>
+<!-- BootstrapのCSS読み込み -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/jquery.bxslider.css">
+<link rel="stylesheet" href="css/additional_slide.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker.min.css">
+<link rel="stylesheet" href="css/application.css">
+<link rel="stylesheet" href="css/parts.css">
+<link rel="stylesheet" href="css/local.css">
+<link rel="stylesheet" href="css/style.css">
+<!-- jQuery読み込み -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script>
+<script src="js/jquery.bxslider.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(function() {
+	$('.datepicker').datepicker({
+		language: 'ja',
+		format: "yyyy/mm/dd",
+		autoclose: true
+	});
+});
+</script>
+
+<script type="text/javascript">
+$(function() {
+	$('#sandbox-container .input-daterange').datepicker({
+		autoclose: true
+	});
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.header-slider-li').bxSlider({
+		mode: 'fade',
+		speed: 2000,
+		pause: 8000,
+		auto: true,
+		pager: false,
+		controls: false,
+		touchEnabled: false
+	});
+});
+</script>
+
+<script type="text/javascript">
+(function ($) {
+    $(window).on("load", function () {
+        $(".js-demo-01").bxSlider({
+            auto: true,
+			autoHover: true,
+            infiniteLoop: true,
+            responsive: true,
+            speed: 1000,
+            displaySlideQty: 1,
+            pager: true,
+            slideWidth: 960,
+            startSlide: 0,
+            minSlides: 1,
+            maxSlides: 1,
+            moveSlides: 1,
+            slideMargin: 0,
+            pause: 4000,
+        });
+    });
+}(jQuery));
+</script>
+
+</head>
+<body role="document">
+<!-- <header style="background-color:gray">Header</header> -->
+
+
+
+
+
+<div id="wrapper">
+	<header>
+			<!-- nav -->
+		<nav class="navbar navbar-default">
+			<div class="container"><!-- 無くても良い -->
+				<div class="navbar-header">
+					<!-- logo img -->
+					<a class="navbar-brand" href="">
+						<img src="images/logo.png" id="logo-img">
+					</a>
+		
+					<!-- toggle -->
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#top-nav">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+		
+				</div>
+		
+				<!-- top menu -->
+				<div class="collapse navbar-collapse" id="top-nav">
+		
+					<!-- main navbar -->
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="">サービス</a>
+						</li>
+						<li>
+							<a href="">サポート</a>
+						</li>
+						<li>
+							<a href="">事例紹介</a>
+						</li>
+						<li>
+							<a href="">会社概要</a>
+						</li>
+						<li>
+							<a href="inquiry.html">お問い合わせ</a>
+						</li>
+					</ul>
+		
+					<!-- right navbar -->
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href=""><i class="fa fa-sign-in"></i> ログイン</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- end container -->
+		</nav>
+		<!-- end nav -->
+	</header>
+	<div class="content">
+		
+			<div class="header-slider-view">
+				<ul class="header-slider-li">
+					<li style="background-image:url('/images/intro_01.jpg');"></li>
+					<li style="background-image:url('/images/intro_02.jpg');"></li>
+					<li style="background-image:url('/images/intro_03.jpg');"></li>
+					<li style="background-image:url('/images/intro_04.jpg');"></li>
+					<li style="background-image:url('/images/intro_05.jpg');"></li>
+				</ul>
+			</div>
+		<!-- ヘッダースライド -->
+		<div class="header-slider">
+
+
+		</div>
+		<!-- ヘッダースライド end -->
+		
+		<!-- 検索バー -->
+			<div class="container-fluid header-search">
+				<h1>週末、どこ行く？</h1>
+				<h2>見逃していたイベントは、意外と身近にある</h2>
+				<div class="row-fluid">
+					<div class="hidden-xs col-sm-1 col-md-1"></div>
+					<%= form_tag :search_events, method: :get do %>
+					<div class="container-fluid col-xs-11 col-sm-9 col-md-5">
+						<div class="searchform-left" style="width:100%">
+						<%= text_field_tag "q", params[:q], class: "form-control search-radius-off", placeholder: "場所を入力" %>
+						<!-- <input type="text" class="form-control search-radius-off" placeholder="場所を入力"> -->
+						</div>
+					</div>
+					<div class="hidden-xs hidden-sm col-md-4" id="sandbox-container">
+						<div class="input-daterange input-group" id="datepicker">
+							<input type="text" class="input-sm form-control datepicker" name="start" placeholder="開始日" />
+							<span class="input-group-addon datepicker">to</span>
+							<input type="text" class="input-sm form-control datepicker" name="end" placeholder="終了日" />
+						</div>
+					</div>
+					<div class="input-group-btn col-xs-1 col-sm-1 col-md-1 searchform-right">
+						<button class="btn btn-default" type="submit">
+							<span class='glyphicon glyphicon-search'></span>
+						</button>
+					</div>
+					<% end %>
+					<div class="hidden-xs col-sm-1 col-md-1"></div>
+				</div>
+			</div>
+		<!-- 検索バー end -->
+		
+		<!-- 見出し -->
+		<div class="block-title-w top-margin24">
+			<h2>「行ってみたい」が見つかる</h2>
+			<p>Spotclipでは、メジャーなイベントからレアな観光スポットまで、身近なおでかけを検索できます。</p>
+		</div>
+		<!-- 見出し end -->
+		
+		<!-- エリアから探す -->
+		<div class="container">
+			<div class="row top-area-row">
+				<div class="col-xs-12 col-md-4 top-area">
+					<a href="" target="_blank">
+					<div class="top-area-img" style="background-image: url('images/39114.jpg')"></div>
+					<div class="top-area-caption">
+						<div class="top-area-caption-background">
+							<h1>博多市</h1>
+						</div>
+					</div>
+					</a>
+				</div>
+				<div class="col-xs-12 col-md-4 top-area">
+					<a href="" target="_blank">
+					<div class="top-area-img" style="background-image: url('images/39114.jpg')"></div>
+					<div class="top-area-caption">
+						<div class="top-area-caption-background">
+							<h1>名古屋市</h1>
+						</div>
+					</div>
+					</a>
+				</div>
+				<div class="col-xs-12 col-md-4 top-area">
+					<a href="" target="_blank">
+					<div class="top-area-img" style="background-image: url('images/39114.jpg')"></div>
+					<div class="top-area-caption">
+						<div class="top-area-caption-background">
+							<h1>大阪市</h1>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="container">
+			<div class="row top-margin24">
+				<div class="hidden-xs col-sm-1 col-md-2"></div>
+				<div class="col-xs-12 col-sm-10 col-md-8">
+					<ul class="quick-link-list">
+						<li>
+							<dl style="margin-bottom:24px">
+								<dt><a href="/locals/region/1">北海道</a></dt>
+									<dd><a href="/locals/area/1">北海道</a></dd>
+							</dl>
+							<dl>
+								<dt><a href="/locals/region/2">東北</a></dt>
+								<dd><a href="/locals/area/2">青森県</a></dd>
+								<dd><a href="/locals/area/3">岩手県</a></dd>
+								<dd><a href="/locals/area/4">宮城県</a></dd>
+								<dd><a href="/locals/area/5">秋田県</a></dd>
+								<dd><a href="/locals/area/6">山形県</a></dd>
+								<dd><a href="/locals/area/7">福島県</a></dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dt><a href="/locals/region/3">関東</a></dt>
+								<dd><a href="/locals/area/8">茨城県</a></dd>
+								<dd><a href="/locals/area/9">栃木県</a></dd>
+								<dd><a href="/locals/area/10">群馬県</a></dd>
+								<dd><a href="/locals/area/11">埼玉県</a></dd>
+								<dd><a href="/locals/area/12">千葉県</a></dd>
+								<dd><a href="/locals/area/13">東京都</a></dd>
+								<dd><a href="/locals/area/14">神奈川県</a></dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dt><a href="/locals/region/4">中部</a></dt>
+								<dd><a href="/locals/area/15">新潟県</a></dd>
+								<dd><a href="/locals/area/16">富山県</a></dd>
+								<dd><a href="/locals/area/17">石川県</a></dd>
+								<dd><a href="/locals/area/18">福井県</a></dd>
+								<dd><a href="/locals/area/19">山梨県</a></dd>
+								<dd><a href="/locals/area/20">長野県</a></dd>
+								<dd><a href="/locals/area/21">岐阜県</a></dd>
+								<dd><a href="/locals/area/22">静岡県</a></dd>
+								<dd><a href="/locals/area/23">愛知県</a></dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dt><a href="/locals/region/5">近畿</a></dt>
+								<dd><a href="/locals/area/24">三重県</a></dd>
+								<dd><a href="/locals/area/25">滋賀県</a></dd>
+								<dd><a href="/locals/area/26">京都府</a></dd>
+								<dd><a href="/locals/area/27">大阪府</a></dd>
+								<dd><a href="/locals/area/28">兵庫県</a></dd>
+								<dd><a href="/locals/area/29">奈良県</a></dd>
+								<dd><a href="/locals/area/30">和歌山県</a></dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dt><a href="/locals/region/6">中国</a></dt>
+								<dd><a href="/locals/area/31">鳥取県</a></dd>
+								<dd><a href="/locals/area/32">島根県</a></dd>
+								<dd><a href="/locals/area/33">岡山県</a></dd>
+								<dd><a href="/locals/area/34">広島県</a></dd>
+								<dd><a href="/locals/area/35">山口県</a></dd>
+							</dl>
+							<dl style="margin-bottom:24px">
+								<dt><a href="/locals/region/7">四国</a></dt>
+								<dd><a href="/locals/area/36">徳島県</a></dd>
+								<dd><a href="/locals/area/37">香川県</a></dd>
+								<dd><a href="/locals/area/38">愛媛県</a></dd>
+								<dd><a href="/locals/area/39">高知県</a></dd>
+							</dl>
+						</li>
+						<li>
+							<dl>
+								<dt><a href="/locals/region/8">九州・沖縄</a></dt>
+								<dd><a href="/locals/area/40">福岡県</a></dd>
+								<dd><a href="/locals/area/41">佐賀県</a></dd>
+								<dd><a href="/locals/area/42">長崎県</a></dd>
+								<dd><a href="/locals/area/43">熊本県</a></dd>
+								<dd><a href="/locals/area/44">大分県</a></dd>
+								<dd><a href="/locals/area/45">宮崎県</a></dd>
+								<dd><a href="/locals/area/46">鹿児島県</a></dd>
+								<dd><a href="/locals/area/47">沖縄県</a></dd>
+							</dl>
+						</li>
+					</ul>
+				</div>
+				<div class="hidden-xs col-sm-1 col-md-2"></div>
+			</div>
+		</div>
+		<!-- エリアから探す end -->
+		
+		<!-- 見出し -->
+
+		<!-- 見出し end -->
+		
+		<!-- ピックアップスライド -->
+		<div class="mod-bxslider-demo-01">
+
+			<ul class="js-demo-01">
+				<a href="http://www.yahoo.co.jp" target="_blank">
+				<li style="background-image: url('images/39114.jpg')"></li>
+				<div class="slide-caption">
+					<div class="slide-caption-background">
+						<h1>大阪</h1>
+						<p>おいしいごはんおいしいごはんおいしいごはんおいしいごはんおいしいごはんおいしいごはんおいしいごはんおいしいごはんおいしいごはん</p>
+					</div>
+				</div>
+				</a>
+				<a href="http://www.google.co.jp" target="_blank">
+				<li style="background-image: url('images/39281.jpg')"></li>
+				<div class="slide-caption">
+					<div class="slide-caption-background">
+						<h1>大阪</h1>
+						<p>おいしいごはんおいしいごはんおいしいごはんおいしいごはんおいしいごはんおいしいごはんおいしいごはんおいしいごはんおいしいごはん</p>
+					</div>
+				</div>
+				</a>
+				<a href="http://www.goo.ne.jp" target="_blank">
+				<li style="background-image: url('images/45760.jpg')"></li>
+				<div class="slide-caption">
+					<div class="slide-caption-background">
+						<h1>大阪</h1>
+						<p>おいしいごはんおいしいごはんおいしいごはんおいしいごはんおいしいごはんおいしいごはんおいしいごはんおいしいごはんおいしいごはん</p>
+					</div>
+				</div>
+				</a>
+			</ul>
+			<div class="pickup-title">
+				<h2>注目のイベント</h2>
+			</div>
+		</div>
+		<!-- ピックアップスライド end -->
+		
+		<!-- イベント一覧 -->
+		<div class="container">
+			<div class="row top-margin32">
+				<div class="col-xs-12 col-md-3 event-small">
+					<a href="" target="_blank">
+					<div class="event-img" style="background-image: url('images/39114.jpg')"></div>
+					<div class="caption-area">
+						<div class="caption-background">
+							<h3>下崎山のヘトマト行事</h3>
+							<p>2016年1月17日</p>
+							<p> 長崎県 / 白浜神社（下崎山町）一帯</p>
+							<p>出典: http://www.rurubu.com/event/detail.aspx?ID=11103</p>
+						</div>
+					</div>
+					</a>
+				</div>
+				<div class="col-xs-12 col-md-3 event-small">
+					<a href="" target="_blank">
+					<div class="event-img" style="background-image: url('images/39114.jpg')"></div>
+					<div class="caption-area">
+						<div class="caption-background">
+							<h3>下崎山のヘトマト行事</h3>
+							<p>2016年1月17日</p>
+							<p> 長崎県 / 白浜神社（下崎山町）一帯</p>
+							<p>出典: http://www.rurubu.com/event/detail.aspx?ID=11103</p>
+						</div>
+					</div>
+					</a>
+				</div>
+					<div class="col-xs-12 col-md-3 event-small">
+					<a href="" target="_blank">
+					<div class="event-img" style="background-image: url('images/39114.jpg')"></div>
+					<div class="caption-area">
+						<div class="caption-background">
+							<h3>下崎山のヘトマト行事</h3>
+							<p>2016年1月17日</p>
+							<p> 長崎県 / 白浜神社（下崎山町）一帯</p>
+							<p>出典: http://www.rurubu.com/event/detail.aspx?ID=11103</p>
+						</div>
+					</div>
+					</a>
+				</div>
+				<div class="col-xs-12 col-md-3 event-small">
+					<a href="" target="_blank">
+					<div class="event-img" style="background-image: url('images/39114.jpg')"></div>
+					<div class="caption-area">
+						<div class="caption-background">
+							<h3>下崎山のヘトマト行事</h3>
+							<p>2016年1月17日</p>
+							<p> 長崎県 / 白浜神社（下崎山町）一帯</p>
+							<p>出典: http://www.rurubu.com/event/detail.aspx?ID=11103</p>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>
+			<button type="button" class="btn btn-default btn-lg center-block top-margin24">他のイベントを探す</button>
+		</div>
+		<!-- イベント一覧 end -->
+		
+		<!-- こんなことができます（引用） -->
+		
+		<div class="container-fluid top-margin32" style="background-color:#E3E2E0">
+			<div class="block-title-w top-margin32" style="background-color:#E3E2E0">
+				<h2>こんなことができます</h2>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-4 explain text-center">
+						<div class="row">
+							<div class="col-xs-2 col-sm-12">
+								<h1><span class="glyphicon glyphicon-phone"></span></h1>
+							</div>
+							<div class="col-xs-10 col-sm-12">
+								<h4>たくさんのイベントを毎週お届け</h4>
+								<p class="text-left">毎週1000件以上、イベントを配信！設定した地域のおすすめイベントをカテゴリごとに見れるので、気になるイベントを見つけられます。<p>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 explain text-center">
+						<div class="row">
+							<div class="col-xs-2 col-sm-12">
+								<h1><span class="glyphicon glyphicon-paperclip"></span></h1>
+							</div>
+							<div class="col-xs-10 col-sm-12">
+								<h4>気になるイベントをクリップ</h4>
+								<p class="text-left">面白そうなイベントや行きたいイベントがあったら、まずはクリップ！お忘れ防止(リマインダー)機能で、行きそびれることはありません。<p>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 explain text-center">
+						<div class="row">
+							<div class="col-xs-2 col-sm-12">
+								<h1><span class="glyphicon glyphicon-calendar"></span></h1>
+							</div>
+							<div class="col-xs-10 col-sm-12">
+								<h4>キーワードやカレンダーで検索</h4>
+								<p class="text-left">地域名+気になる単語で検索。いろんな組み合わせで、たくさんのイベントの中から絞り込めます！カレンダーで開催日から検索もできます。<p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 text-center">
+						<h3>いつでも手元にSpotclipを。アプリをダウンロード</h3>
+					</div>
+					<div class="col-xs-12 text-center">
+						<a href="https://play.google.com/store/apps/details?id=jp.tenxlab.spotclip&referrer=utm_source%3Dservice_site" onclick="trackOutboundLink('https://play.google.com/store/apps/details?id=jp.tenxlab.spotclip&referrer=utm_source%3Dservice_site'); return false;"><img src="/images/download_icon/download_google_play.png" class="download-icon"></a>
+						<a href="https://click.google-analytics.com/redirect?tid=UA-60065985-2&url=https%3A%2F%2Fitunes.apple.com%2Fjp%2Fapp%2Fspotclip%2Fid972983437%3Fmt%3D8&aid=jp.10xlab.spotclip&idfa=%{idfa}&cs=service_site&cn=service_site" onclick="trackOutboundLink('https://click.google-analytics.com/redirect?tid=UA-60065985-2&url=https%3A%2F%2Fitunes.apple.com%2Fjp%2Fapp%2Fspotclip%2Fid972983437%3Fmt%3D8&aid=jp.10xlab.spotclip&idfa=%{idfa}&cs=service_site&cn=service_site'); return false;"><img src="/images/download_icon/download_app_store.png" class="download-icon"></a>
+					</div>
+					<div class="col-xs-12 text-center">
+						<p>Android OS 4.0以上、iOS 8.2以上で利用できます。</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- こんなこと end -->
+			
+		<!-- イベント募集 -->
+		<div class="container top-margin24">
+			<div class="row">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-10">
+					<a href="" target="_blank">
+						<div class="thumbnail event-wanted row">
+							<div class="col-xs-6">
+								<div class="caption">
+									<h3 style="font-weight:700">Spotclipにイベントを登録しませんか？</h3>
+									<p class="top-margin24	">イベント情報を入力したりチラシをアップロードするだけで、イベント配信が可能！どのくらいのユーザに見られたか、分析もできます。</p>
+								</div>
+							</div>
+							<div class="col-xs-6"></div>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-1"></div>
+			</div>
+		</div>
+		<!-- イベント募集 end -->
+		
+		<!-- おしらせ（引用） -->
+		<div class="block-title">
+			<h2 class="text-center">お知らせ</h2>
+		</div>
+		<div class="container">
+			<div class="row">
+					<div class="col-xs-12 col-sm-4 col-md-3">
+						<div class="tile-box bs-callout bs-callout-info" style="background-color: rgba(255,255,255,0.75);">
+							<a href="/notices/94">
+								<h4>2015-12-25</h4>
+								<p>九州以外のエリアを選べるようになりました</p>
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-3">
+						<div class="tile-box bs-callout bs-callout-info" style="background-color: rgba(255,255,255,0.75);">
+							<a href="/notices/91">
+								<h4>2015-12-18</h4>
+								<p>年末年始のサポートについて</p>
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-3">
+						<div class="tile-box bs-callout bs-callout-info" style="background-color: rgba(255,255,255,0.75);">
+							<a href="/notices/89">
+								<h4>2015-12-04</h4>
+								<p>iOS版アプリをバージョン2.0.1へアップデートしました</p>
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-3">
+						<div class="tile-box bs-callout bs-callout-info" style="background-color: rgba(255,255,255,0.75);">
+							<a href="/notices/86">
+								<h4>2015-11-24</h4>
+								<p>iOS版アプリをバージョン2.0へアップデートしました</p>
+							</a>
+						</div>
+					</div>
+				<div class="text-right">
+					<a href="/notices">&gt;&gt; お知らせをもっと見る</a>
+				</div>
+			</div>
+		</div>
+		<!-- おしらせ end -->
+		
+
+		
+		
+	</div>
+	
+	<footer style="background-color:gray">
+	<div class="container text-center">
+		<div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+			<ul class="list-inline">
+				<li><a href="/terms">Spotclipとは</a></li>
+				<li><a href="/prmanager/terms" target="_blank">利用者向け</a></li>
+				<li><a href="/trademark">掲載者向け</a></li>
+				<li><a href="http://10xlab.jp/privacy" target="_blank">ブログ</a></li>
+				<li><a href="http://10xlab.jp/" target="_blank">利用規約とプライバシー</a></li>
+			</ul>
+		</div>
+	<div class="text-center">
+		<ul class="list-inline">
+			<li><a href="/terms">利用規約(アプリ)</a></li>
+			<li><a href="/prmanager/terms" target="_blank">利用規約(PRマネージャー)</a></li>
+			<li><a href="/trademark">商標について</a></li>
+			<li><a href="http://10xlab.jp/privacy" target="_blank">個人情報の取扱いについて</a></li>
+			<li><a href="http://10xlab.jp/" target="_blank">運営会社</a></li>
+		</ul>
+	</div>
+	<p class="text-center">
+	copyright 2015 <a href="http://10xlab.jp/" target="_blank">10xlab</a>. All Rights Reserved.
+	</p>
+	</footer>
+	
+</div>
+
+<!-- 消えてもらう！
+-->
+</body>
+</html>

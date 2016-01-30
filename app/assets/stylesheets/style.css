@@ -1,0 +1,95 @@
+.item img {
+width:100%;
+}
+
+fluid2 {
+padding:0;
+}
+
+.navbar{
+    border-radius: 0;
+    border: none;
+    background-color: #FFFFFF; /* ベース基調となる濃い青 */
+	margin-bottom: 10px;
+}
+
+#logo-img{
+    height: 30px;
+}
+
+.navbar-brand{
+	padding: 10px 15px
+}
+
+/*
+.content{
+	padding: 0px;
+}
+*/
+
+.navbar-default .navbar-nav >li > a{
+    color: #000000;
+}
+
+.navbar-default .navbar-nav >li > a:hover{
+    color: #29a41d;
+}
+
+.searchform{
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.search-radius-off{
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.searchform-place{
+	padding: 0px 120px; 
+}
+
+.datepicker{
+	border-radius: 0px;
+	border-left: 0px;
+}
+
+.form-control[readonly]{
+	background-color: #FFF;
+}
+
+.input-sm{
+	height: 34px;
+}
+
+.input-daterange input:first-child{
+	border-radius: 0px;
+}
+
+.input-daterange input:last-child{
+	border-radius: 0px;
+}
+
+#sandbox-container{
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.map-fullscreen1{
+	position: static;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.map-fullscreen{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.events-wanted{
+	margin: 0 auto;
+	width: 75%;
+}
