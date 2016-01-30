@@ -1,0 +1,2 @@
+# spotclip
+Spotclip example
